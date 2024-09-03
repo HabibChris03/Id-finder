@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID FINDER</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="bg-white py-3" id="nav">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="mb-0"><img src="img/Untitled-1.png" alt="logo">ID FINDER</h1>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="found-id.html">Found ID</a></li>
+                        <li class="nav-item"><a class="nav-link" href="search-id.html">Search ID</a></li>
+                        <li class="nav-item"><a class="nav-link" href="message.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="top">
+        <div class="top-left">
+            <div class="main">
+                Instructions for found cards
+            </div>
+            <div class="main-bt">
+                If any form of card is missing is found please register it in the form below <br>Lets try to help others to find their personal belongings. After registering Please make sure you keep the card safely till the person who owns it contacts you.<br> Our team is also here to support others in any problem they have. These is a stress free website so try to input all information correctly and carefully.
+            </div>
+        </div>
+        <div class="top-right">
+            <img src="img/DL.png" alt="image" class="pic">
+        </div>
+    </div>
+
+    <main>
+        <div class="class">
+        <section id="found-id" class="content">
+            <h2 class="heading">Report Found Document</h2>
+            <form>
+                <h2>IDENTIFICATION DETAILS</h2>
+                <label>Name on Card</label>
+                <input type="text" placeholder="Name on ID card or license" required><br>
+                <label>Your Name</label>
+                <input type="text" placeholder="Name of person who found the ID card" required><br>
+                <label>Card</label>
+                <select required>
+                    <option>Driving License</option>
+                    <option>ID Card</option>
+                    <option>Passport</option>
+                    <option>Business Document</option>
+                    <option>Birth Certificate</option>
+                    <option>Voters Card</option>
+                    <option>Others</option>
+                </select>
+                <br>
+                <label>Card Number</label>
+                <input type="text" placeholder="Enter card number" not required>&nbsp;
+                <label>Picture of the Card</label>
+                <input type="file" required><br>
+                <h2>LOCATION DETAILS</h2>
+                <label>Your location</label>
+                <select required>
+                    <option>Douala</option>
+                    <option>Yaoundé</option>
+                    <option>Bamenda</option>
+                    <option>Bafoussam</option>
+                    <option>Garoua</option>
+                    <option>Ngaoundere</option>
+                    <option>Buea</option>
+                    <option>Edea</option>
+                    <option>Ebolowa</option>
+                    <option>Maroua</option>
+                </select>&nbsp;&nbsp;
+                <label>Date</label>
+                <input type="date"><br>
+                <h2> CONTACT DETAILS</h2>
+                <label>Phone Number</label>
+                <input type="tel" placeholder="Telephone number" required>&nbsp;&nbsp;
+                <label> Email</label>
+                <input type="email" placeholder="Enter your email" required><br><br>
+                <input type="checkbox">Not a Robot<br>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </div>
+    </main>
+
+    <footer>
+        <div class="footer1">
+        <div class="AboutUs">
+            <h2 class="end">ABOUT US</h2>
+            <p>Welcome to ID Finder, where our mission is to reunite lost ID cards with their rightful owners. We understand the stress and inconvenience of losing important identification, and we're here to help.<br>
+    
+                Our dedicated team works tirelessly to provide a secure and efficient platform for reporting and finding lost IDs. With a user-friendly interface and robust privacy measures, we ensure a seamless experience for all users.<br>
+                
+                Join us in our commitment to making lost-and-found services more accessible and reliable. Thank you for trusting ID Finder to assist you in your time of need.
+            </p><br>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-snapchat"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+        <div class="Security">
+            <h2 class="end">Security and Privacy</h2>
+            <p>At ID Finder, we prioritize the security of your personal information, using advanced encryption methods to safeguard your data. Your information is used solely to reunite you with your lost ID, and we never share it with third parties without your consent.<br>
+                 All interactions on our platform are protected with SSL encryption, ensuring a secure experience. You have full control over your data, with options to update or delete your information at any time. We maintain strict confidentiality and privacy standards to protect your identity.<br>
+                  Additionally, we use cookies to enhance your experience, which you can manage in your browser settings. Our team continuously monitors the platform for security threats and updates our protocols accordingly.<br>
+                   For any questions or concerns, please contact our support team.
+            </p>
+        </div>
+        <div class="location">
+            <h2 class="end">Location</h2>
+        <p><i class="fa-solid fa-location-dot"></i>Cameroon,South West,Buea</p>
+        <p><i class="fa-solid fa-phone-volume"></i>+237-673492314</p>
+        </div>
+        </div>
+        <div class="copy">
+        <p>All rights @IDFINDER &COPY;copyrights</p>
+        </div>
+     </footer>
+</body>
+</html>
