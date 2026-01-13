@@ -3,108 +3,825 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ID FINDER</title>
+    <title>Search for Lost ID | ID FINDER</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary-blue: #2a5bd7;
+            --secondary-blue: #4a7dff;
+            --light-blue: #e8f0fe;
+            --accent-orange: #ff7a45;
+            --warning-color: #ff9800;
+            --dark-gray: #333;
+            --light-gray: #f8f9fa;
+            --medium-gray: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            background-color: #f9fbfd;
+        }
+        
+        /* Header */
+        header {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--white);
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+        }
+        
+        header h1 img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .navbar-nav .nav-link {
+            font-weight: 600;
+            color: var(--dark-gray);
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-blue);
+            background-color: var(--light-blue);
+        }
+        
+        .nav-link.active {
+            color: var(--primary-blue) !important;
+            background-color: var(--light-blue);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--warning-color) 0%, #ffb74d 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+            opacity: 0.15;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .hero-steps {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .step-number {
+            background-color: white;
+            color: var(--warning-color);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* Search Form Section */
+        .search-section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--warning-color);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .form-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-header {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-header i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control, .form-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.25rem rgba(42, 91, 215, 0.15);
+        }
+        
+        .form-row {
+            margin-bottom: 1rem;
+        }
+        
+        .btn-search {
+            background-color: var(--warning-color);
+            border-color: var(--warning-color);
+            color: white;
+            padding: 0.75rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            display: block;
+            margin: 2rem auto 0;
+            width: 200px;
+        }
+        
+        .btn-search:hover {
+            background-color: #f57c00;
+            border-color: #ef6c00;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Results Section */
+        .results-section {
+            padding: 3rem 0;
+            background-color: var(--light-gray);
+            display: none;
+        }
+        
+        .results-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .result-item {
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .result-item:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 3px 10px rgba(42, 91, 215, 0.1);
+        }
+        
+        .result-match {
+            display: inline-block;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        .no-results i {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a2332;
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-title {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--warning-color);
+            display: inline-block;
+        }
+        
+        .footer-links a {
+            color: #b0b7c3;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+        
+        .contact-info i {
+            color: var(--warning-color);
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: #b0b7c3;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-section::before {
+                width: 100%;
+                opacity: 0.1;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+                margin-top: -30px;
+            }
+            
+            .hero-steps {
+                padding: 1rem;
+            }
+        }
+        
+        /* Additional Styling */
+        .form-note {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary-blue);
+            padding: 1rem 1.5rem;
+            margin-top: 2rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .quick-search {
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .quick-search h4 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-blue);
+        }
+        
+        .quick-search-btn {
+            margin: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            background-color: white;
+            border: 2px solid var(--light-blue);
+            color: var(--primary-blue);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .quick-search-btn:hover {
+            background-color: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
     <header class="bg-white py-3" id="nav">
         <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="mb-0"><img src="img/Untitled-1.png" alt="logo">ID FINDER</h1>
+            <h1 class="mb-0"><img src="https://via.placeholder.com/40x40/2a5bd7/ffffff?text=ID" alt="logo">ID FINDER</h1>
             <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="found-id.html">Found ID</a></li>
-                        <li class="nav-item"><a class="nav-link" href="search-id.html">Search ID</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="search-id.html">Search ID</a></li>
                         <li class="nav-item"><a class="nav-link" href="message.html">Contact Us</a></li>
                     </ul>
                 </div>
             </nav>
         </div>
     </header>
-    <div class="top">
-        <div class="top-left">
-            <div class="main">
-                Instructions to Search Cards
-            </div>
-            <div class="main-bt">
-                Welcome to the ID Card Finder! If you've lost, misplaced, or need information about an ID card, you're in the right place. Our user-friendly search tool allows you to quickly find details about various types of ID cards, including driver’s licenses, passports, and more.
 
-                Simply enter the required information below, and let our advanced system do the work for you. Whether you’re looking to recover a lost ID or just need assistance with the replacement process, we’re here to help you every step of the way. Start your search now to regain peace of mind!</div>
-        </div>
-        <div class="top-right">
-            <img src="img/DL.png" alt="image" class="pic">
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 hero-content">
+                    <h1 class="hero-title">Search for Your Lost ID</h1>
+                    <p class="hero-subtitle">
+                        Lost your ID card, passport, or driver's license? Don't worry! Our search tool helps you quickly find if someone has reported finding your document.
+                    </p>
+                    
+                    <div class="hero-steps">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div>
+                                <strong>Enter Your Information</strong>
+                                <p class="mb-0">Fill in the search form with details about your lost document</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div>
+                                <strong>Search Our Database</strong>
+                                <p class="mb-0">We'll scan all reported found documents for matches</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div>
+                                <strong>Get Connected</strong>
+                                <p class="mb-0">If we find a match, we'll help you connect with the finder</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="text-center">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Search for ID" class="img-fluid rounded shadow-lg">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-
-    <main>
-        <div class="class">
-        <section id="search-id" class="content">
-            <h2>Search for Missing Document</h2>
-            <form>
-                <label>Full Names</label>
-                <input type="text" placeholder="Name on card" required><br>
-                <label>Type of Card</label>
-                <select required>
-                    <option>Driving License</option>
-                    <option>ID Card</option>
-                    <option>Passport</option>
-                    <option>Business Document</option>
-                    <option>Birth Certificate</option>
-                    <option>Voters Card</option>
-                    <option>Others</option>
-                </select><br>
-                <label>Date lost</label>
-                <input type="date" required><br>
-                <label>Date of Birth</label>
-                <input type="date" not required>
-                <label>Card Number</label>
-                <input type="text" placeholder="ID number" not required><br>
+    <!-- Search Form Section -->
+    <main class="search-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">Search for Missing Document</h2>
+                    <p class="section-subtitle">
+                        Enter as much information as you can remember about your lost document. More details increase the chances of finding a match.
+                    </p>
+                </div>
                 
-                <button type="submit">Search</button>
-            </form>
-        </section>
+                <form id="searchForm">
+                    <!-- Personal Details -->
+                    <div class="form-header">
+                        <i class="fas fa-user-circle"></i>
+                        <h3 class="mb-0">Personal Details</h3>
+                    </div>
+                    
+                    <div class="row form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="fullName">Full Name on Document <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="fullName" placeholder="Enter the full name as it appears on the document" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="documentType">Type of Document <span class="text-danger">*</span></label>
+                            <select class="form-select form-control" id="documentType" required>
+                                <option value="" disabled selected>Select document type</option>
+                                <option>Driving License</option>
+                                <option>National ID Card</option>
+                                <option>Passport</option>
+                                <option>Business Document</option>
+                                <option>Birth Certificate</option>
+                                <option>Voter's Card</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Document Details -->
+                    <div class="form-header mt-5">
+                        <i class="fas fa-id-card"></i>
+                        <h3 class="mb-0">Document Details</h3>
+                    </div>
+                    
+                    <div class="row form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="documentNumber">Document Number</label>
+                            <input type="text" class="form-control" id="documentNumber" placeholder="Enter document number if known">
+                            <small class="form-text text-muted">This greatly increases search accuracy</small>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="dateLost">Date Lost or Last Seen <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" id="dateLost" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="dateOfBirth">Date of Birth</label>
+                            <input type="date" class="form-control" id="dateOfBirth">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="locationLost">Location Lost</label>
+                            <select class="form-select form-control" id="locationLost">
+                                <option value="" selected>Select location (if known)</option>
+                                <option>Douala</option>
+                                <option>Yaoundé</option>
+                                <option>Bamenda</option>
+                                <option>Bafoussam</option>
+                                <option>Garoua</option>
+                                <option>Ngaoundere</option>
+                                <option>Buea</option>
+                                <option>Edea</option>
+                                <option>Ebolowa</option>
+                                <option>Maroua</option>
+                                <option>Not sure</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Information -->
+                    <div class="form-header mt-5">
+                        <i class="fas fa-info-circle"></i>
+                        <h3 class="mb-0">Additional Information</h3>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additionalDetails">Additional Details</label>
+                        <textarea class="form-control" id="additionalDetails" rows="3" placeholder="Any additional information that might help identify your document (e.g., distinctive features, where you last had it, etc.)"></textarea>
+                    </div>
+                    
+                    <!-- Contact Information -->
+                    <div class="form-header mt-5">
+                        <i class="fas fa-address-book"></i>
+                        <h3 class="mb-0">Your Contact Information</h3>
+                    </div>
+                    
+                    <div class="row form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="contactEmail">Email Address <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="contactEmail" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="contactPhone">Phone Number <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="contactPhone" placeholder="+237 XXX XXX XXX" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-note">
+                        <i class="fas fa-shield-alt text-primary mr-2"></i>
+                        <strong>Privacy Note:</strong> Your contact information will only be shared with someone who has reported finding a document that matches your search. We will never share your information for any other purpose.
+                    </div>
+                    
+                    <button type="submit" class="btn btn-search">
+                        <i class="fas fa-search mr-2"></i>Search for Document
+                    </button>
+                </form>
+                
+                <!-- Quick Search Options -->
+                <div class="quick-search">
+                    <h4>Quick Search Options</h4>
+                    <button type="button" class="quick-search-btn" data-type="Driving License">
+                        <i class="fas fa-car mr-2"></i>Driving License
+                    </button>
+                    <button type="button" class="quick-search-btn" data-type="National ID Card">
+                        <i class="fas fa-id-card mr-2"></i>ID Card
+                    </button>
+                    <button type="button" class="quick-search-btn" data-type="Passport">
+                        <i class="fas fa-passport mr-2"></i>Passport
+                    </button>
+                </div>
+            </div>
         </div>
     </main>
 
+    <!-- Results Section (Initially Hidden) -->
+    <section class="results-section" id="resultsSection">
+        <div class="container">
+            <div class="results-container">
+                <h3 class="text-center mb-4">Search Results</h3>
+                <div id="searchResults">
+                    <!-- Results will be displayed here by JavaScript -->
+                </div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-primary" id="newSearchBtn">
+                        <i class="fas fa-redo mr-2"></i>Start New Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div class="footer1">
-        <div class="AboutUs">
-            <h2 class="end">ABOUT US</h2>
-            <p>Welcome to ID Finder, where our mission is to reunite lost ID cards with their rightful owners. We understand the stress and inconvenience of losing important identification, and we're here to help.<br>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="footer-title">ABOUT US</h3>
+                    <p class="mb-4">Welcome to ID Finder, where our mission is to reunite lost ID cards with their rightful owners. We understand the stress and inconvenience of losing important identification, and we're here to help.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="footer-title">QUICK LINKS</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="found-id.html">Found ID</a>
+                        <a href="search-id.html">Search ID</a>
+                        <a href="message.html">Contact Us</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">FAQ</a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <h3 class="footer-title">CONTACT INFO</h3>
+                    <div class="contact-info">
+                        <p class="mb-3">
+                            <i class="fas fa-map-marker-alt"></i> 
+                            Cameroon, South West, Buea
+                        </p>
+                        <p class="mb-3">
+                            <i class="fas fa-phone"></i> 
+                            +237-673492314
+                        </p>
+                        <p class="mb-3">
+                            <i class="fas fa-envelope"></i> 
+                            search@idfinder.cm
+                        </p>
+                        <p>
+                            <i class="fas fa-clock"></i> 
+                            Support: Mon - Fri, 8:00 AM - 5:00 PM
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="copyright">
+                        <p class="mb-0">All rights reserved &copy; 2026 IDFINDER | Helping Cameroonians recover lost documents</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
-                Our dedicated team works tirelessly to provide a secure and efficient platform for reporting and finding lost IDs. With a user-friendly interface and robust privacy measures, we ensure a seamless experience for all users.<br>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default date for date lost (today)
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('dateLost').value = today;
+            
+            // Active nav link
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Quick search buttons
+            document.querySelectorAll('.quick-search-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const docType = this.getAttribute('data-type');
+                    document.getElementById('documentType').value = docType;
+                    
+                    // Scroll to form
+                    document.getElementById('fullName').focus();
+                });
+            });
+            
+            // Form submission
+            document.getElementById('searchForm').addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                Join us in our commitment to making lost-and-found services more accessible and reliable. Thank you for trusting ID Finder to assist you in your time of need.
-            </p><br>
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-snapchat"></i></a>
-            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-        </div>
-        <div class="Security">
-            <h2 class="end">Security and Privacy</h2>
-            <p>At ID Finder, we prioritize the security of your personal information, using advanced encryption methods to safeguard your data. Your information is used solely to reunite you with your lost ID, and we never share it with third parties without your consent.<br>
-                 All interactions on our platform are protected with SSL encryption, ensuring a secure experience. You have full control over your data, with options to update or delete your information at any time. We maintain strict confidentiality and privacy standards to protect your identity.<br>
-                  Additionally, we use cookies to enhance your experience, which you can manage in your browser settings. Our team continuously monitors the platform for security threats and updates our protocols accordingly.<br>
-                   For any questions or concerns, please contact our support team.
-            </p>
-        </div>
-        <div class="location">
-            <h2 class="end">Location</h2>
-        <p><i class="fa-solid fa-location-dot"></i>Cameroon,South West,Buea</p>
-        <p><i class="fa-solid fa-phone-volume"></i>+237-673492314</p>
-        </div>
-        </div>
-        <div class="copy">
-        <p>All rights @IDFINDER &COPY;copyrights</p>
-        </div>
-     </footer>
+                // Get form data
+                const fullName = document.getElementById('fullName').value;
+                const docType = document.getElementById('documentType').value;
+                const dateLost = document.getElementById('dateLost').value;
+                
+                // Show loading state
+                const searchBtn = document.querySelector('.btn-search');
+                const originalText = searchBtn.innerHTML;
+                searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Searching...';
+                searchBtn.disabled = true;
+                
+                // Simulate search delay
+                setTimeout(function() {
+                    // Show results section
+                    document.getElementById('resultsSection').style.display = 'block';
+                    
+                    // Scroll to results
+                    document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Display results
+                    displaySearchResults(fullName, docType, dateLost);
+                    
+                    // Reset button
+                    searchBtn.innerHTML = originalText;
+                    searchBtn.disabled = false;
+                }, 1500);
+            });
+            
+            // New search button
+            document.getElementById('newSearchBtn').addEventListener('click', function() {
+                document.getElementById('resultsSection').style.display = 'none';
+                document.getElementById('searchForm').reset();
+                document.getElementById('dateLost').value = today;
+                document.getElementById('fullName').focus();
+            });
+            
+            // Function to display search results
+            function displaySearchResults(fullName, docType, dateLost) {
+                const resultsContainer = document.getElementById('searchResults');
+                
+                // Simulate search results (in a real app, this would come from a server)
+                const hasMatches = Math.random() > 0.5; // 50% chance of finding matches
+                
+                if (hasMatches) {
+                    resultsContainer.innerHTML = `
+                        <div class="alert alert-success mb-4">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            <strong>We found potential matches!</strong> Below are documents that match your search criteria.
+                        </div>
+                        
+                        <div class="result-item">
+                            <span class="result-match"><i class="fas fa-star mr-1"></i> High Match</span>
+                            <h5>${fullName} - ${docType}</h5>
+                            <p class="mb-2"><strong>Document Number:</strong> XXXXXX-${Math.floor(Math.random() * 10000)}</p>
+                            <p class="mb-2"><strong>Found Location:</strong> ${getRandomCity()}</p>
+                            <p class="mb-2"><strong>Found Date:</strong> ${formatDate(new Date(dateLost))}</p>
+                            <p class="mb-3"><strong>Status:</strong> Reported found, awaiting claimant</p>
+                            <button class="btn btn-sm btn-primary">
+                                <i class="fas fa-envelope mr-1"></i> Contact Finder
+                            </button>
+                        </div>
+                        
+                        <div class="result-item">
+                            <span class="result-match"><i class="fas fa-star mr-1"></i> Partial Match</span>
+                            <h5>${fullName.split(' ')[0]} [Partial Name] - ${docType}</h5>
+                            <p class="mb-2"><strong>Found Location:</strong> ${getRandomCity()}</p>
+                            <p class="mb-2"><strong>Found Date:</strong> ${formatDate(new Date(dateLost))}</p>
+                            <p class="mb-3"><strong>Note:</strong> First name matches, but last name differs slightly</p>
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-info-circle mr-1"></i> View Details
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    resultsContainer.innerHTML = `
+                        <div class="no-results">
+                            <i class="fas fa-search"></i>
+                            <h4 class="mb-3">No Matches Found</h4>
+                            <p class="mb-4">We couldn't find any documents matching your search criteria in our database.</p>
+                            <div class="alert alert-info">
+                                <i class="fas fa-lightbulb mr-2"></i>
+                                <strong>Suggestions:</strong>
+                                <ul class="mb-0 mt-2">
+                                    <li>Check if you entered your name exactly as it appears on the document</li>
+                                    <li>Try searching with fewer details if you're not sure about exact information</li>
+                                    <li>Check back in a few days - new found documents are added regularly</li>
+                                    <li>Consider reporting your document as lost on our "Found ID" page</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Helper functions
+            function getRandomCity() {
+                const cities = ['Douala', 'Yaoundé', 'Bamenda', 'Bafoussam', 'Buea', 'Garoua'];
+                return cities[Math.floor(Math.random() * cities.length)];
+            }
+            
+            function formatDate(date) {
+                return date.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+            }
+        });
+    </script>
 </body>
 </html>

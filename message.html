@@ -1,107 +1,747 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ID FINDER</title>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header class="bg-white py-3" id="nav">
-            <div class="container d-flex justify-content-between align-items-center">
-                <h1 class="mb-0"><img src="img/Untitled-1.png" alt="logo">ID FINDER</h1>
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <div class="collapse navbar-collapse">
-                        <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="found-id.html">Found ID</a></li>
-                            <li class="nav-item"><a class="nav-link" href="search-id.html">Search ID</a></li>
-                            <li class="nav-item"><a class="nav-link" href="message.html">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </header>
-        <div class="Support">
-            <div id="h1">
-            <h1 class="Contact">
-                CONTACT US
-            </h1>
-            <p class="C1">Office located in South West region precisely Buea</p>
-            </div>
-            <div class="head">
-                <h2>CUSTOMER SUPPORT</h2>
-            </div>
-            <p class="beg">We’re here to assist you! At ID Card Finder, your satisfaction is our top priority. If you have any questions, concerns, or need help with our services, please reach out to our dedicated support team.</p>
-            <div class="head">
-                <h2>How Can We Help You?</h2>
-            </div>
-            <div class="beg">
-            <ul type="stroke">
-                <li><span>General Inquiries</span>:For questions about our services or how to use the ID card finder.</li>
-                <li><span>Technical Support</span>: If you're experiencing issues with our website or tools.</li>
-                <li><span>Feedback</span>:We’d love to hear your thoughts on how we can improve our services.</li>
-            </ul>
-            </div>
-            <p>Please fill out the contact form below or reach us via email or phone. We aim to respond to all inquiries within 24 hours. Your feedback is invaluable to us, and we look forward to assisting you!</p>
-            <h2>Email Us</h2><br>
-            <p><h3>Email:</h3> Support@IDfinder.com</p><br>
-            <h2>Call Us</h2>
-            <p><h3>Phone Number:</h3> +237 673492314</p>
-            <strong>From 9am to 8pm 24/6 except Sundays</strong>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | ID FINDER</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary-blue: #2a5bd7;
+            --secondary-blue: #4a7dff;
+            --light-blue: #e8f0fe;
+            --accent-purple: #8a4fff;
+            --dark-gray: #333;
+            --light-gray: #f8f9fa;
+            --medium-gray: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            background-color: #f9fbfd;
+        }
+        
+        /* Header */
+        header {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--white);
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+        }
+        
+        header h1 img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .navbar-nav .nav-link {
+            font-weight: 600;
+            color: var(--dark-gray);
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-blue);
+            background-color: var(--light-blue);
+        }
+        
+        .nav-link.active {
+            color: var(--primary-blue) !important;
+            background-color: var(--light-blue);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #a978ff 100%);
+            color: white;
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+            opacity: 0.15;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        /* Contact Info Section */
+        .contact-info-section {
+            padding: 5rem 0 3rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-purple);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .contact-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            margin-bottom: 2rem;
+            border-top: 5px solid var(--accent-purple);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--accent-purple);
+            margin-bottom: 1.5rem;
+            width: 70px;
+            height: 70px;
+            background-color: rgba(138, 79, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .support-hours {
+            background-color: #fff8e1;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #ffc107;
+        }
+        
+        /* Contact Form Section */
+        .contact-form-section {
+            background-color: var(--light-gray);
+            padding: 5rem 0;
+        }
+        
+        .form-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-header {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-header i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.25rem rgba(42, 91, 215, 0.15);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-submit {
+            background-color: var(--accent-purple);
+            border-color: var(--accent-purple);
+            color: white;
+            padding: 0.75rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            width: 100%;
+        }
+        
+        .btn-submit:hover {
+            background-color: #7a3ae6;
+            border-color: #6b2cd9;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .form-note {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary-blue);
+            padding: 1rem 1.5rem;
+            margin-top: 2rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 0;
+        }
+        
+        .faq-item {
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            background-color: var(--white);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background-color: var(--light-blue);
+        }
+        
+        .faq-answer {
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eaeaea;
+            display: none;
+        }
+        
+        .faq-icon {
+            color: var(--accent-purple);
+            transition: var(--transition);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a2332;
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-title {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-purple);
+            display: inline-block;
+        }
+        
+        .footer-links a {
+            color: #b0b7c3;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+        
+        .contact-info i {
+            color: var(--accent-purple);
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: #b0b7c3;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-section::before {
+                width: 100%;
+                opacity: 0.1;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
+            
+            .contact-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="bg-white py-3" id="nav">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="mb-0"><img src="https://via.placeholder.com/40x40/2a5bd7/ffffff?text=ID" alt="logo">ID FINDER</h1>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="found-id.html">Found ID</a></li>
+                        <li class="nav-item"><a class="nav-link" href="search-id.html">Search ID</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="message.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
+    </header>
 
-    <main>
-        <div class="class">
-        <section id="message" class="content">
-            <h2>Contact Us</h2>
-            <form>
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email" required>
-                <input type="tel" placeholder="Telephone number" required><br>
-                <textarea placeholder="Your message"></textarea><br>
-                <button type="submit">Send</button>
-            </form>
-        </section>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Contact Us</h1>
+                <p class="hero-subtitle">
+                    We're here to help! Whether you have questions, need assistance, or want to provide feedback, 
+                    our team is ready to support you. Reach out to us through any of the channels below.
+                </p>
+                <p class="hero-subtitle">
+                    Our office is located in the South West region, precisely in Buea, Cameroon.
+                </p>
+            </div>
         </div>
-    </main>
-    <footer>
-        <div class="footer1">
-        <div class="AboutUs">
-            <h2 class="end">ABOUT US</h2>
-            <p>Welcome to ID Finder, where our mission is to reunite lost ID cards with their rightful owners. We understand the stress and inconvenience of losing important identification, and we're here to help.<br>
-    
-                Our dedicated team works tirelessly to provide a secure and efficient platform for reporting and finding lost IDs. With a user-friendly interface and robust privacy measures, we ensure a seamless experience for all users.<br>
+    </div>
+
+    <!-- Contact Info Section -->
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Customer Support</h2>
+                <p class="section-subtitle">
+                    Your satisfaction is our top priority. If you have any questions, concerns, or need help with our services, 
+                    please reach out to our dedicated support team.
+                </p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>General Inquiries</h4>
+                        <p>For questions about our services or how to use the ID card finder platform.</p>
+                        <div class="support-hours">
+                            <p class="mb-0"><strong>Support Hours:</strong></p>
+                            <p class="mb-0">Monday - Saturday: 9:00 AM - 8:00 PM</p>
+                            <p class="mb-0">Sunday: 10:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
                 
-                Join us in our commitment to making lost-and-found services more accessible and reliable. Thank you for trusting ID Finder to assist you in your time of need.
-            </p><br>
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-snapchat"></i></a>
-            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <div class="col-lg-4 mb-4">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h4>Technical Support</h4>
+                        <p>If you're experiencing issues with our website, forms, or search tools.</p>
+                        <div class="mt-4">
+                            <p class="mb-2"><i class="fas fa-envelope text-primary mr-2"></i> <strong>Email:</strong> techsupport@idfinder.cm</p>
+                            <p class="mb-0"><i class="fas fa-phone text-primary mr-2"></i> <strong>Phone:</strong> +237 673 492 314</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4>Feedback & Suggestions</h4>
+                        <p>We'd love to hear your thoughts on how we can improve our services.</p>
+                        <div class="mt-4">
+                            <p class="mb-2"><i class="fas fa-envelope text-primary mr-2"></i> <strong>Email:</strong> feedback@idfinder.cm</p>
+                            <p class="mb-0"><i class="fas fa-lightbulb text-primary mr-2"></i> <strong>Response Time:</strong> Within 48 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="Security">
-            <h2 class="end">Security and Privacy</h2>
-            <p>At ID Finder, we prioritize the security of your personal information, using advanced encryption methods to safeguard your data. Your information is used solely to reunite you with your lost ID, and we never share it with third parties without your consent.<br>
-                 All interactions on our platform are protected with SSL encryption, ensuring a secure experience. You have full control over your data, with options to update or delete your information at any time. We maintain strict confidentiality and privacy standards to protect your identity.<br>
-                  Additionally, we use cookies to enhance your experience, which you can manage in your browser settings. Our team continuously monitors the platform for security threats and updates our protocols accordingly.<br>
-                   For any questions or concerns, please contact our support team.
-            </p>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <i class="fas fa-paper-plane"></i>
+                    <h3 class="mb-0">Send Us a Message</h3>
+                </div>
+                
+                <form id="contactForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone">Phone Number <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control" id="phone" placeholder="+237 XXX XXX XXX" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="subject">Subject <span class="text-danger">*</span></label>
+                                <select class="form-control" id="subject" required>
+                                    <option value="" disabled selected>Select a subject</option>
+                                    <option>General Inquiry</option>
+                                    <option>Technical Support</option>
+                                    <option>Report an Issue</option>
+                                    <option>Feedback & Suggestions</option>
+                                    <option>Partnership Opportunity</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="message" placeholder="Please describe your inquiry in detail..." rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">
+                                I agree to the <a href="#" class="text-primary">Privacy Policy</a> and allow ID Finder to contact me regarding my inquiry.
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-note">
+                        <i class="fas fa-info-circle text-primary mr-2"></i>
+                        <strong>Response Time:</strong> We aim to respond to all inquiries within 24 hours during business days. For urgent matters, please call our support line.
+                    </div>
+                    
+                    <button type="submit" class="btn btn-submit mt-4">
+                        <i class="fas fa-paper-plane mr-2"></i>Send Message
+                    </button>
+                </form>
+            </div>
         </div>
-        <div class="location">
-            <h2 class="end">Location</h2>
-        <p><i class="fa-solid fa-location-dot"></i>Cameroon,South West,Buea</p>
-        <p><i class="fa-solid fa-phone-volume"></i>+237-673492314</p>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Find quick answers to common questions about our services</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How long does it take to find a lost ID once it's reported?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The time varies depending on when and where the ID was lost. Once reported, our system immediately checks for matches in our database. If someone has already found and registered your ID, we can connect you within 24 hours. Otherwise, we'll notify you as soon as a match is found.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Is there a fee for using ID Finder services?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No, ID Finder is completely free for users searching for lost IDs. Our mission is to help reunite people with their important documents without any cost. We may offer premium verification services in the future, but basic search and reporting will always remain free.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How is my personal information protected?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We use advanced encryption (SSL/TLS) to protect all data transmitted through our platform. Your personal information is only shared with someone who has found your exact document, and only after verification. We never sell or share your data with third parties for marketing purposes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What should I do if I find someone's ID card?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Please visit our <a href="found-id.html" class="text-primary">Found ID</a> page to report the found document. Fill out the form with as much detail as possible, and keep the document safe until the owner contacts you. We'll help facilitate the safe return of the ID to its rightful owner.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do you serve all regions of Cameroon?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! ID Finder serves all 10 regions of Cameroon. Our platform is accessible nationwide, and we work with local partners in major cities including Douala, Yaoundé, Bamenda, Bafoussam, Garoua, and of course Buea where our main office is located.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="footer-title">ABOUT US</h3>
+                    <p class="mb-4">Welcome to ID Finder, where our mission is to reunite lost ID cards with their rightful owners. We understand the stress and inconvenience of losing important identification, and we're here to help.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="footer-title">QUICK LINKS</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="found-id.html">Found ID</a>
+                        <a href="search-id.html">Search ID</a>
+                        <a href="message.html">Contact Us</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <h3 class="footer-title">CONTACT INFO</h3>
+                    <div class="contact-info">
+                        <p class="mb-3">
+                            <i class="fas fa-map-marker-alt"></i> 
+                            Cameroon, South West, Buea
+                        </p>
+                        <p class="mb-3">
+                            <i class="fas fa-phone"></i> 
+                            +237-673492314
+                        </p>
+                        <p class="mb-3">
+                            <i class="fas fa-envelope"></i> 
+                            contact@idfinder.cm
+                        </p>
+                        <p>
+                            <i class="fas fa-clock"></i> 
+                            Support: Mon-Sat, 9:00 AM - 8:00 PM
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="copyright">
+                        <p class="mb-0">All rights reserved &copy; 2026 IDFINDER | Reuniting Cameroonians with their lost documents</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="copy">
-        <p>All rights @IDFINDER &COPY;copyrights</p>
-        </div>
-     </footer>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Active nav link
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                
+                // Show loading state
+                const submitBtn = document.querySelector('.btn-submit');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+                submitBtn.disabled = true;
+                
+                // Simulate sending delay
+                setTimeout(function() {
+                    // Show success message
+                    alert(`Thank you, ${name}! Your message has been sent successfully. We will respond to your inquiry about "${subject}" at ${email} within 24 hours.`);
+                    
+                    // Reset form
+                    document.getElementById('contactForm').reset();
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+            });
+        });
+        
+        // FAQ toggle function
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            }
+            
+            // Close other open FAQs
+            const allAnswers = document.querySelectorAll('.faq-answer');
+            const allIcons = document.querySelectorAll('.faq-icon');
+            
+            allAnswers.forEach((item, index) => {
+                if (item !== answer) {
+                    item.style.display = 'none';
+                    allIcons[index].style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

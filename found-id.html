@@ -3,22 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ID FINDER</title>
+    <title>Report Found ID | ID FINDER</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary-blue: #2a5bd7;
+            --secondary-blue: #4a7dff;
+            --light-blue: #e8f0fe;
+            --accent-green: #28a745;
+            --accent-orange: #ff7a45;
+            --dark-gray: #333;
+            --light-gray: #f8f9fa;
+            --medium-gray: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            background-color: #f9fbfd;
+        }
+        
+        /* Header */
+        header {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--white);
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+        }
+        
+        header h1 img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .navbar-nav .nav-link {
+            font-weight: 600;
+            color: var(--dark-gray);
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-blue);
+            background-color: var(--light-blue);
+        }
+        
+        .nav-link.active {
+            color: var(--primary-blue) !important;
+            background-color: var(--light-blue);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--accent-green) 0%, #20c997 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+            opacity: 0.15;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .highlight {
+            color: #ffd166;
+            font-weight: 700;
+        }
+        
+        /* Form Section */
+        .form-section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-green);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .form-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-header {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-header i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control, .form-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.25rem rgba(42, 91, 215, 0.15);
+        }
+        
+        .form-row {
+            margin-bottom: 1rem;
+        }
+        
+        .checkbox-container {
+            background-color: var(--light-blue);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .btn-submit {
+            background-color: var(--accent-green);
+            border-color: var(--accent-green);
+            color: white;
+            padding: 0.75rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            display: block;
+            margin: 2rem auto 0;
+            width: 200px;
+        }
+        
+        .btn-submit:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .form-note {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 1rem 1.5rem;
+            margin-top: 2rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a2332;
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-title {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-green);
+            display: inline-block;
+        }
+        
+        .footer-links a {
+            color: #b0b7c3;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+        
+        .contact-info i {
+            color: var(--accent-green);
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: #b0b7c3;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-section::before {
+                width: 100%;
+                opacity: 0.1;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+                margin-top: -30px;
+            }
+        }
+        
+        /* Custom file input */
+        .custom-file-input:focus ~ .custom-file-label {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.25rem rgba(42, 91, 215, 0.15);
+        }
+        
+        .custom-file-label {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+        }
+        
+        .custom-file-label::after {
+            padding: 0.75rem 1rem;
+            background-color: #e9ecef;
+            border-left: 1px solid #ddd;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
     <header class="bg-white py-3" id="nav">
         <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="mb-0"><img src="img/Untitled-1.png" alt="logo">ID FINDER</h1>
+            <h1 class="mb-0"><img src="https://via.placeholder.com/40x40/2a5bd7/ffffff?text=ID" alt="logo">ID FINDER</h1>
             <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="found-id.html">Found ID</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="found-id.html">Found ID</a></li>
                         <li class="nav-item"><a class="nav-link" href="search-id.html">Search ID</a></li>
                         <li class="nav-item"><a class="nav-link" href="message.html">Contact Us</a></li>
                     </ul>
@@ -26,106 +347,267 @@
             </nav>
         </div>
     </header>
-    <div class="top">
-        <div class="top-left">
-            <div class="main">
-                Instructions for found cards
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 hero-content">
+                    <h1 class="hero-title">Found a Lost ID Card?</h1>
+                    <p class="hero-subtitle">
+                        <span class="highlight">Thank you for being a Good Samaritan!</span> Your action can help reunite someone with their important identification document.
+                    </p>
+                    <p class="hero-subtitle">
+                        Please fill out the form below to register the found card. Our system will help match it with the rightful owner. Let's work together to help others recover their personal belongings.
+                    </p>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="text-center">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Found ID Card" class="img-fluid rounded shadow-lg">
+                    </div>
+                </div>
             </div>
-            <div class="main-bt">
-                If any form of card is missing is found please register it in the form below <br>Lets try to help others to find their personal belongings. After registering Please make sure you keep the card safely till the person who owns it contacts you.<br> Our team is also here to support others in any problem they have. These is a stress free website so try to input all information correctly and carefully.
-            </div>
-        </div>
-        <div class="top-right">
-            <img src="img/DL.png" alt="image" class="pic">
         </div>
     </div>
 
-    <main>
-        <div class="class">
-        <section id="found-id" class="content">
-            <h2 class="heading">Report Found Document</h2>
-            <form>
-                <h2>IDENTIFICATION DETAILS</h2>
-                <label>Name on Card</label>
-                <input type="text" placeholder="Name on ID card or license" required><br>
-                <label>Your Name</label>
-                <input type="text" placeholder="Name of person who found the ID card" required><br>
-                <label>Card</label>
-                <select required>
-                    <option>Driving License</option>
-                    <option>ID Card</option>
-                    <option>Passport</option>
-                    <option>Business Document</option>
-                    <option>Birth Certificate</option>
-                    <option>Voters Card</option>
-                    <option>Others</option>
-                </select>
-                <br>
-                <label>Card Number</label>
-                <input type="text" placeholder="Enter card number" not required>&nbsp;
-                <label>Picture of the Card</label>
-                <input type="file" required><br>
-                <h2>LOCATION DETAILS</h2>
-                <label>Your location</label>
-                <select required>
-                    <option>Douala</option>
-                    <option>Yaoundé</option>
-                    <option>Bamenda</option>
-                    <option>Bafoussam</option>
-                    <option>Garoua</option>
-                    <option>Ngaoundere</option>
-                    <option>Buea</option>
-                    <option>Edea</option>
-                    <option>Ebolowa</option>
-                    <option>Maroua</option>
-                </select>&nbsp;&nbsp;
-                <label>Date</label>
-                <input type="date"><br>
-                <h2> CONTACT DETAILS</h2>
-                <label>Phone Number</label>
-                <input type="tel" placeholder="Telephone number" required>&nbsp;&nbsp;
-                <label> Email</label>
-                <input type="email" placeholder="Enter your email" required><br><br>
-                <input type="checkbox">Not a Robot<br>
-                <button type="submit">Submit</button>
-            </form>
-        </section>
-    </div>
+    <!-- Main Form Section -->
+    <main class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">Report Found Document</h2>
+                    <p class="section-subtitle">
+                        Please provide accurate information about the found document. All information is kept secure and will only be used to reunite the document with its owner.
+                    </p>
+                </div>
+                
+                <form>
+                    <!-- Identification Details -->
+                    <div class="form-header">
+                        <i class="fas fa-id-card"></i>
+                        <h3 class="mb-0">Identification Details</h3>
+                    </div>
+                    
+                    <div class="row form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="cardName">Name on Card <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="cardName" placeholder="Enter the name on the ID card or license" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="finderName">Your Name (Finder) <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="finderName" placeholder="Your full name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="documentType">Document Type <span class="text-danger">*</span></label>
+                            <select class="form-select form-control" id="documentType" required>
+                                <option value="" disabled selected>Select document type</option>
+                                <option>Driving License</option>
+                                <option>National ID Card</option>
+                                <option>Passport</option>
+                                <option>Business Document</option>
+                                <option>Birth Certificate</option>
+                                <option>Voter's Card</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="cardNumber">Document Number</label>
+                            <input type="text" class="form-control" id="cardNumber" placeholder="Enter document number if visible">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cardPhoto">Photo of Document <span class="text-danger">*</span></label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="cardPhoto" required>
+                            <label class="custom-file-label" for="cardPhoto">Choose file (Max 5MB)</label>
+                        </div>
+                        <small class="form-text text-muted">Upload a clear photo of the document (front and back if possible)</small>
+                    </div>
+                    
+                    <!-- Location Details -->
+                    <div class="form-header mt-5">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3 class="mb-0">Location Details</h3>
+                    </div>
+                    
+                    <div class="row form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="location">Location Found <span class="text-danger">*</span></label>
+                            <select class="form-select form-control" id="location" required>
+                                <option value="" disabled selected>Select location</option>
+                                <option>Douala</option>
+                                <option>Yaoundé</option>
+                                <option>Bamenda</option>
+                                <option>Bafoussam</option>
+                                <option>Garoua</option>
+                                <option>Ngaoundere</option>
+                                <option>Buea</option>
+                                <option>Edea</option>
+                                <option>Ebolowa</option>
+                                <option>Maroua</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="foundDate">Date Found <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" id="foundDate" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="specificLocation">Specific Location Details</label>
+                        <textarea class="form-control" id="specificLocation" rows="2" placeholder="e.g., Near Central Market, in front of bank, etc."></textarea>
+                    </div>
+                    
+                    <!-- Contact Details -->
+                    <div class="form-header mt-5">
+                        <i class="fas fa-address-book"></i>
+                        <h3 class="mb-0">Your Contact Details</h3>
+                    </div>
+                    
+                    <div class="row form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="phone">Phone Number <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="phone" placeholder="+237 XXX XXX XXX" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="email">Email Address <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="email" placeholder="your.email@example.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additionalInfo">Additional Information</label>
+                        <textarea class="form-control" id="additionalInfo" rows="3" placeholder="Any additional details about how you found the document or condition of the document"></textarea>
+                    </div>
+                    
+                    <!-- Terms and Submit -->
+                    <div class="checkbox-container">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="notRobot" required>
+                            <label class="form-check-label" for="notRobot">
+                                I confirm that I'm not a robot and I'm submitting this information in good faith to help reunite the document with its owner.
+                            </label>
+                        </div>
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">
+                                I agree to keep the document safe until the owner contacts me and I understand that ID Finder will only share my contact information with the verified owner.
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-note">
+                        <i class="fas fa-info-circle text-warning mr-2"></i>
+                        <strong>Important:</strong> Once you submit this form, you'll receive a confirmation email with a reference number. Please keep the document safe until the owner contacts you. Our team may reach out for additional verification.
+                    </div>
+                    
+                    <button type="submit" class="btn btn-submit">
+                        <i class="fas fa-paper-plane mr-2"></i>Submit Report
+                    </button>
+                </form>
+            </div>
+        </div>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <div class="footer1">
-        <div class="AboutUs">
-            <h2 class="end">ABOUT US</h2>
-            <p>Welcome to ID Finder, where our mission is to reunite lost ID cards with their rightful owners. We understand the stress and inconvenience of losing important identification, and we're here to help.<br>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="footer-title">ABOUT US</h3>
+                    <p class="mb-4">Welcome to ID Finder, where our mission is to reunite lost ID cards with their rightful owners. We understand the stress and inconvenience of losing important identification, and we're here to help.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="footer-title">QUICK LINKS</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="found-id.html">Found ID</a>
+                        <a href="search-id.html">Search ID</a>
+                        <a href="message.html">Contact Us</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <h3 class="footer-title">CONTACT INFO</h3>
+                    <div class="contact-info">
+                        <p class="mb-3">
+                            <i class="fas fa-map-marker-alt"></i> 
+                            Cameroon, South West, Buea
+                        </p>
+                        <p class="mb-3">
+                            <i class="fas fa-phone"></i> 
+                            +237-673492314
+                        </p>
+                        <p class="mb-3">
+                            <i class="fas fa-envelope"></i> 
+                            foundid@idfinder.cm
+                        </p>
+                        <p>
+                            <i class="fas fa-clock"></i> 
+                            Support: Mon - Fri, 8:00 AM - 5:00 PM
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="copyright">
+                        <p class="mb-0">All rights reserved &copy; 2026 IDFINDER | Reuniting Cameroonians with their lost documents</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
-                Our dedicated team works tirelessly to provide a secure and efficient platform for reporting and finding lost IDs. With a user-friendly interface and robust privacy measures, we ensure a seamless experience for all users.<br>
-                
-                Join us in our commitment to making lost-and-found services more accessible and reliable. Thank you for trusting ID Finder to assist you in your time of need.
-            </p><br>
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-snapchat"></i></a>
-            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-        </div>
-        <div class="Security">
-            <h2 class="end">Security and Privacy</h2>
-            <p>At ID Finder, we prioritize the security of your personal information, using advanced encryption methods to safeguard your data. Your information is used solely to reunite you with your lost ID, and we never share it with third parties without your consent.<br>
-                 All interactions on our platform are protected with SSL encryption, ensuring a secure experience. You have full control over your data, with options to update or delete your information at any time. We maintain strict confidentiality and privacy standards to protect your identity.<br>
-                  Additionally, we use cookies to enhance your experience, which you can manage in your browser settings. Our team continuously monitors the platform for security threats and updates our protocols accordingly.<br>
-                   For any questions or concerns, please contact our support team.
-            </p>
-        </div>
-        <div class="location">
-            <h2 class="end">Location</h2>
-        <p><i class="fa-solid fa-location-dot"></i>Cameroon,South West,Buea</p>
-        <p><i class="fa-solid fa-phone-volume"></i>+237-673492314</p>
-        </div>
-        </div>
-        <div class="copy">
-        <p>All rights @IDFINDER &COPY;copyrights</p>
-        </div>
-     </footer>
+    <script>
+        // Set today's date as default for found date
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set today's date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('foundDate').value = today;
+            
+            // File input label update
+            $('.custom-file-input').on('change', function() {
+                let fileName = $(this).val().split('\\').pop();
+                $(this).next('.custom-file-label').addClass("selected").html(fileName);
+            });
+            
+            // Active nav link
+            const currentPage = window.location.pathname.split('/').pop();
+            $('.nav-link').each(function() {
+                if ($(this).attr('href') === currentPage) {
+                    $(this).addClass('active');
+                }
+            });
+            
+            // Form submission
+            $('form').on('submit', function(e) {
+                e.preventDefault();
+                // In a real application, you would submit the form data to a server
+                alert('Thank you for reporting the found document! You will receive a confirmation email shortly.');
+                this.reset();
+                $('.custom-file-label').html('Choose file (Max 5MB)');
+            });
+        });
+    </script>
 </body>
 </html>
